@@ -104,4 +104,92 @@ void openGate() {
 
 void closeGate() {
   gateServo.write(0);  // move the servo to 0 degrees (closed position)
+
+
+
+
+
+  // code for Ardiuno to control the servo motor and read the sensor data
+
+  #include <LiquidCrystal.h>
+LiquidCrystal lcd(13, 12, 11, 10, 9, 8);
+void setup()
+{
+   pinMode(A0,INPUT);//gYRO
+   pinMode(A1,INPUT);//Gyro
+   pinMode(A2,INPUT);//Gyro
+   pinMode(5,INPUT);// FIRE
+   pinMode(A3,OUTPUT);//motor 
+   pinMode(A4,INPUT);
+   pinMode(A5,INPUT);
+   pinMode(5,INPUT);
+   pinMode(4,OUTPUT);
+   //pinMode(2,INPUT);
+   
+   lcd.begin (16,2);  
+   lcd.setCursor(0,0);
+   lcd.print("Live Human Det.");
+   lcd.setCursor(0,1);
+   lcd.print("System Using IOT.");
+   delay(3000);
+   lcd.clear();
+   Serial.begin(9600);
+   
+}    
+    
+void loop()
+{
+
+  if (Serial.available()>0) 
+  {
+  char y=Serial.read();
+
+
+  if(y=='1')
+  {  
+     lcd.setCursor(0,0);
+     lcd.print("Name: Ekalaivan ");
+     lcd.setCursor(0,1);
+     lcd.print("   Army Person ");
+     Serial.print("A");
+
+    }
+
+  if(y=='2')
+  {  
+     lcd.setCursor(0,0);
+     lcd.print("Name:  Mani     ");
+     lcd.setCursor(0,1);
+     lcd.print("   Army Person ");
+     Serial.print("B");
+
+    }
+
+
+     if(y=='3')
+  {  
+     lcd.setCursor(0,0);
+     lcd.print("Name: Monish    ");
+     lcd.setCursor(0,1);
+     lcd.print("   Army Person ");
+     Serial.print("C");
+
+    }
+
+    
+     if(y=='4')
+  {  
+     lcd.setCursor(0,0);
+     lcd.print(" Unknown Person ");
+     lcd.setCursor(0,1);
+     lcd.print("                  ");
+     Serial.print("D");
+
+    }
+
+  }
+}
+
+ 
+
 }
